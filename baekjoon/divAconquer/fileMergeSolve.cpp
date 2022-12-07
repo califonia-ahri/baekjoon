@@ -8,19 +8,23 @@ using namespace std;
 int main()
 {
     int n;
-    while(--n)
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+
+    cin>>n;
+    while(n--)
     {
         int n2;
-        vector<int> sum;
-        vector<vector<int> > dp(n2, vector<int>(n2, 0));
-        vector<int> files;
         cin>>n2;
+        
+        vector<int> sum(n2+1, 0);
+        vector<vector<int> > dp(n2+1, vector<int>(n2+1, 0));
+
         for(int i=1;i<=n2;i++)
         {
             int file;
             cin>> file;
-            files.push_back(file);
-            sum[i] = sum[i-1] + files[i];
+            sum[i] = sum[i-1] + file;
         }
 
         for(int i=1;i<n2;i++)
@@ -36,6 +40,7 @@ int main()
                 }
             }
         }
-        cout<<dp[0][n2-1]<<endl;
+
+        cout<<dp[1][n2]<<endl;
     }
 }
