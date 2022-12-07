@@ -1,47 +1,46 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
 int n1, n2;
+vector<int> times;
 
 int getMinTime()
 {
-    cin>>n2;
-
-    vector<vector<int> > count(vector<int>(n2), 0);
-    vector<int> times;
-    for(int i=0;i<n2;i++)
+    while(times.size()!=1)
     {
-        int time;
-        cin>>time;
+        sort(times.begin(), times.end());
+        int mid = (times.size()-1)/2;
 
-        times.push_back(time);
+        int merged = times[mid] + times[mid+1];
+        times.erase(times.begin()+mid);
+        times.erase(times.begin()+mid+1);
+        times.push_back(merged);
     }
 
-    for(int i=0;i<n2;i++)
-    {
-        for(int j=0;j<n2-i;j++)
-        {
-            int temp = j + i;
-
-            if(temp==j)
-
-        }
-    }
+    return times[0];
 }
 
 int main()
 {
-    ios::sync_with_stdio(false);
-    cin.tie(0);
-
     cin>> n1;
-
     for(int i=0;i<n1;i++)
     {
-        
-    }
+        cin>>n2;
 
+        for(int j=0;j<n2;j++)
+        {
+            int time;
+            cin>>time;
+
+            times.push_back(time);
+        }
+
+        cout<<getMinTime()<<endl;
+
+        times.clear();
+    }
 
 }
